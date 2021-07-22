@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Entities\TSBot.Entities.csproj" />
+    <ProjectReference Include="..\TSBot.Entities\TSBot.Entities.csproj" />
   </ItemGroup>
 
 </Project>
