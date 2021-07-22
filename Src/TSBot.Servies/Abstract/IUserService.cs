@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TSBot.Serviсes.Abstract
 {
-    interface IUserService
+    public interface IUserService
     {
        
     }

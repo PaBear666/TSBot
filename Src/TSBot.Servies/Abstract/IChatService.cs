@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TSBot.Data;
 
 namespace TSBot.Serviсes.Abstract
 {
-    interface IChatService
+    public interface IChatService
     {
-        public 
+       
     }
 }
