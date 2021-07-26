@@ -3,27 +3,46 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TSBot.Data;
+using Microsoft.EntityFrameworkCore;
+using Telegram.Bot;
+using TelegramUI.Models;
+using TSBot.Data.Repositories;
+using TSBot.Serviñes.Abstract;
+using TSBot.Serviñes;
+using TelegramUI.Service;
+using Newtonsoft.Json;
 
-
-namespace TelegramUI
+namespace TSBot.TelegramUI
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _appSettings = configuration.GetSection("BotConfiguration").Get<BotAppSettings>();
         }
 
+        private readonly BotAppSettings _appSettings;
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            
+
+            services.AddControllers().AddNewtonsoftJson();
+            services.AddHttpClient("TgWebhook").AddTypedClient<ITelegramBotClient>(httpClient => new TelegramBotClient(_appSettings.BotToken,httpClient));
+            services.AddHostedService<ConfigureWebhook>();
+            services.AddDbContext<ApplicationContext>(builder =>
+                {
+                    builder.UseSqlServer(Configuration.GetConnectionString("TSBotConnectionString"),b => b.MigrationsAssembly("TelegramUI"));
+                });
+            services.AddScoped<UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<HandleUpdateService>();
+
+
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -34,11 +53,14 @@ namespace TelegramUI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthorization();
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
+                var token = _appSettings.BotToken;
+                endpoints.MapControllerRoute(name: "tgwebhook",
+                                             pattern: $"bot/{token}",
+                                             new { controller = "Webhook", action = "Post" });
                 endpoints.MapControllers();
             });
         }
