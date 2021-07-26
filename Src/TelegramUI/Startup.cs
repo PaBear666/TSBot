@@ -11,7 +11,7 @@ using TSBot.Data.Repositories;
 using TSBot.Serviñes.Abstract;
 using TSBot.Serviñes;
 using TelegramUI.Service;
-using Newtonsoft.Json;
+
 
 namespace TSBot.TelegramUI
 {

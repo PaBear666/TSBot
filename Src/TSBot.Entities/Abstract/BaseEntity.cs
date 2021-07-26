@@ -8,6 +8,6 @@ namespace TSBot.Entities.Abstract
     {
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }
-        public bool IsDelete { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

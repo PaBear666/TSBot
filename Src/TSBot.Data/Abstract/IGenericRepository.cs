@@ -6,16 +6,16 @@ using TSBot.Entities.Abstract;
 
 namespace TSBot.Data.Abstract
 {
-    interface IGenericRepository<TEntity>
+    public interface IGenericRepository<TEntity>
         where TEntity : IBaseEntity
     {
-        Task AddAsync(TEntity entity);
-        Task<TEntity> FindByIdAsync(int id);
-        Task AddRangeAsync(IEnumerable<TEntity> entities);
-        Task<TEntity> Update(TEntity entity);
-        Task<IEnumerable<TEntity>> Get();
-        Task<IEnumerable<TEntity>> Get(Func<TEntity, bool> func);
-        Task<bool> Remove(TEntity entity);
+        public Task AddAsync(TEntity entity);
+        public Task<TEntity> FindByIdAsync(int id);
+        public Task AddRangeAsync(IEnumerable<TEntity> entities);
+        public Task<TEntity> Update(TEntity entity);
+        public Task<IEnumerable<TEntity>> Get();
+        public Task<IEnumerable<TEntity>> Get(Func<TEntity, bool> func);
+        public Task<bool> Remove(TEntity entity);
 
 
 

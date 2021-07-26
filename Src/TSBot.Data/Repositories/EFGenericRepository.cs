@@ -9,7 +9,7 @@ using TSBot.Entities.Abstract;
 
 namespace TSBot.Data.Repositories
 {
-    class EFGenericRepository<TEntity> : IGenericRepository<TEntity>
+    public class EFGenericRepository<TEntity> : IGenericRepository<TEntity>
         where TEntity:class,IBaseEntity
     {
         readonly ApplicationContext _context;
@@ -71,7 +71,7 @@ namespace TSBot.Data.Repositories
             }
             else
             {
-                entity.IsDelete = true;
+                entity.IsDeleted = true;
                 _dbSet.Update(entity);
                 await _context.SaveChangesAsync();
                 return await Task.Run(() => true);
