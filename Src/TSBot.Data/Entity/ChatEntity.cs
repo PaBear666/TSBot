@@ -1,9 +1,8 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Text;
-using TSBot.Entity.Abstract;
+using TSBot.Data.Entity.Abstract;
 
-namespace TSBot.Entity
+namespace TSBot.Data.Entity
 {
     public class ChatEntity : BaseEntity
     {

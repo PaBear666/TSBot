@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Threading.Tasks;
+using TSBot.Serviсes.Domain;
 
 namespace TSBot.Serviсes.Abstract
 {
     public interface IUserService
     {
-       
+        public Task<User> AddUser(User user);
     }
 }

@@ -4,14 +4,13 @@ using TSBot.Data.Entity;
 
 namespace TSBot.Data.Repositories
 {
-    public class UserRepository : Repository<UserEntity>, IUserRepository
+    class WorkRepository : Repository<WorkEntity>, IWorkRepository
     {
-        public UserRepository(ApplicationContext applicationContext) : base(applicationContext)
+        public WorkRepository(ApplicationContext applicationContext) : base(applicationContext)
         {
 
         }
-
-        public override Task<long> GetId(UserEntity entity)
+        public override Task<long> GetId(WorkEntity entity)
         {
             throw new System.NotImplementedException();
         }

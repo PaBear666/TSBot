@@ -1,12 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
-using TSBot.Entities;
+using TSBot.Data.Entity;
 
 namespace TSBot.Data
 {
     public class ApplicationContext : DbContext
     {
         public DbSet<UserEntity> Users { get; set; }
+        public DbSet<TeacherEntity> Teachers { get; set; }
+        public DbSet<StudentEntity> Students { get; set; }
+        public DbSet<ChatEntity> Chats { get; set; }
+        public DbSet<MessageEntity> Messages { get; set; }
+        public DbSet<WorkEntity> Works { get; set; }
         public ApplicationContext(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();
@@ -22,6 +26,7 @@ namespace TSBot.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<UserEntity>().HasKey(x => new { x.Id, x.Email });
             
         }
     }

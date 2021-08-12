@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace TSBot.Entity.Abstract
+
+namespace TSBot.Data.Entity.Abstract
 {
     abstract public class BaseEntity
     {

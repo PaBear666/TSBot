@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TSBot.Data\TSBot.Data.csproj" />
-    <ProjectReference Include="..\TSBot.Domain\TSBot.Domain.csproj" />
   </ItemGroup>
 
 </Project>

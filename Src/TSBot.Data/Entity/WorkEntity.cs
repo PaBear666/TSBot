@@ -1,6 +1,6 @@
-﻿using TSBot.Entity.Abstract;
+﻿using TSBot.Data.Entity.Abstract;
 
-namespace TSBot.Entity
+namespace TSBot.Data.Entity
 {
     public class WorkEntity : BaseEntity
     {
